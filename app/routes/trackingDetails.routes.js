@@ -1,41 +1,40 @@
-const tutorials = require("../controllers/trackingDetails.controller");
 module.exports = app => {
-  const tutorials = require("../controllers/trackingDetails.controller.js");
+  const trackings = require("../controllers/trackingDetails.controller.js");
 
   var router = require("express").Router();
 
-  // Create a new Tutorial
-  router.post("/", tutorials.create);
+  // Create a new tracking number
+  router.post("/", trackings.create);
 
-  // Retrieve all Tutorials
-  router.get("/", tutorials.findAll);
+  // Retrieve all tracking number
+  router.get("/", trackings.findAll);
 
   // Retrieve all published Tutorials
-  router.get("/published", tutorials.findAllPublished);
+  // router.get("/published", trackings.findAllPublished);
 
-  // Retrieve a single Tutorial with id
-  router.get("/:id", tutorials.findOne);
+  // Retrieve a single tracking number with id
+  router.get("/:id", trackings.findOne);
 
-  // Update a Tutorial with id
-  router.put("/:id", tutorials.update);
+  // Update a tracking number with id
+  router.put("/:id", trackings.update);
 
-  // Delete a Tutorial with id
-  router.delete("/:id", tutorials.delete);
+  // Delete a tracking number with id
+  router.delete("/:id", trackings.delete);
 
-  // Create a new Tutorial
-  router.delete("/", tutorials.deleteAll);
+  // Create a new tracking number
+  // router.delete("/", trackings.deleteAll);
 
   // Retrieve a single tracking info with tracking number
-  router.get("/findByTrackingNumber/:trackingNumber", tutorials.findByTrackingNumber);
+  router.get("/findByTrackingNumber/:trackingNumber", trackings.findByTrackingNumber);
 
   // Upsert using tracking number
-  router.post("/upsertTrackingNumber", tutorials.findByTrackingNumberAndUpsert);
+  router.post("/upsertTrackingNumber", trackings.findByTrackingNumberAndUpsert);
 
   // Delete using tracking number
-  router.delete("/deleteTrackingNumber/:trackingNumber", tutorials.findByTrackingNumberAndDelete);
+  router.delete("/deleteTrackingNumber/:trackingNumber", trackings.findByTrackingNumberAndDelete);
 
   // Bulk Upsert using tracking number
-  router.post("/bulkUpsert", tutorials.bulkUpsert);
+  router.post("/bulkUpsert", trackings.bulkUpsert);
 
   app.use("/api/tracking_details", router);
 };
