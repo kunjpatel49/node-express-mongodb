@@ -21,6 +21,10 @@ module.exports = mongoose => {
             type: String,
             required: true
         },
+        files: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'photos.fs'
+        }]
     },
     { timestamps: true }
   );
