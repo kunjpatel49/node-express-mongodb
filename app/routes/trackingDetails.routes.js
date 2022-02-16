@@ -1,5 +1,7 @@
+const {IncomingForm } = require("formidable");
 module.exports = app => {
   const trackings = require("../controllers/trackingDetails.controller.js");
+  const fileUploads = require("../controllers/fileUploads.controller.js");
 
   var router = require("express").Router();
 
@@ -35,6 +37,10 @@ module.exports = app => {
 
   // Bulk Upsert using tracking number
   router.post("/bulkUpsert", trackings.bulkUpsert);
+
+  router.post("/update", fileUploads.receiveFileUploads);
+
+  router.get("/getFileUploads/:filename", fileUploads.getFile);
 
   app.use("/api/tracking_details", router);
 };
