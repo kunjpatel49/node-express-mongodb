@@ -8,7 +8,7 @@ exports.create = (req, res) => {
     res.status(400).send({ message: "Content can not be empty!" });
     return;
   }
-
+    console.log(req.body);
   // Create TrackingDetails
   const tutorial = new TrackingDetails(req.body);
 
@@ -143,12 +143,14 @@ exports.findByTrackingNumber = (req, res) => {
   TrackingDetails.find({ trackingNumber: req.params.trackingNumber })
       .then(data => {
         res.send(data);
+        return data;
       })
       .catch(err => {
         res.status(500).send({
           message:
               err.message || "Some error occurred while retrieving tutorials."
         });
+        return err;
       });
 };
 
